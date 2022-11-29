@@ -1,24 +1,22 @@
 
-import React, { useState } from 'react';
-
+import React from 'react';
+import {useNavigate} from "react-router-dom";
 
 import './ExpenseItem.css';
 import Card from './UI/Card';
 
 function ExpenseItem(props) {
 
-    const [title, setTitle] = useState(props.title);
-    console.log('how much!');
+    const history = useNavigate();
 
     const clickHandler = () => {
-        console.log('clicked!');
-        setTitle('Updated!');
+        history("/product", {state: props});
     };
 
     return (
         <Card className='expense-item'>
-            <div className='expense-item__description'>
-                <h2 > {title}</h2>
+            <div className='expense-item__description' onClick={clickHandler}>
+                <h2 > {props.title}</h2>
                 <div className='expense-item__price'>{props.amount}</div>
             </div>
             <div> <img src={props.image} width="200px" ></img></div>
